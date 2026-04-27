@@ -18,6 +18,15 @@ const sectionMap: Record<string, string> = {
   'progres': 'progress',
 };
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [
+    { section: [] },
+    ...Object.keys(sectionMap).map((section) => ({ section: [section] })),
+  ];
+}
+
 export default async function DashboardPage({ params }: DashboardPageProps) {
   const resolvedParams = await params;
   const sectionKey = resolvedParams.section?.[0];
